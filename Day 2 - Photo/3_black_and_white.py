@@ -3,7 +3,7 @@ from PIL import Image
 im = Image.open("cat.jpg").convert("RGBA")
 pixels = im.load()
 
-for i in range(im.width):
+for i in range(0,im.width):
     for j in range(im.height):
         r, g, b, a = pixels[i, j]
         av = (r + g + b)//3
