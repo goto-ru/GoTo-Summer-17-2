@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/hello" method="post">
+    <p>
+        <label for="name">Введите имя:</label>
+        <input name="name" id="name" type="text"/>
+    </p>
+    <p>
+        <label for="description">Расскажите о себе:</label>
+        <textarea name="description" id="description"></textarea>
+    </p>
+    <p>
+        <label for="age">Вам больше 18?</label>
+        <input type="checkbox" id="age" name="age" value="yes" />
+    </p>
+    <p>
+        <label>Какой ваш любимый цвет?</label><br>
+        <input type="radio" name="color" value="blue" />Голубой<br>
+        <input type="radio" name="color" value="other" />Любой другой<br>
+
+    </p>
+
+    <input type="submit"/>
+</form>
+</body>
+</html>
