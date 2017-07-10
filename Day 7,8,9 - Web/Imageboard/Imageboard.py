@@ -6,7 +6,6 @@ import tornado.web
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         #рендеринг страницы
-
         with open("posts.json") as file:
             data = file.read()
         posts = json.loads(data)
