@@ -10,7 +10,6 @@ class MainHandler(tornado.web.RequestHandler):
         with open("posts.json") as file:
             data = file.read()
         posts = json.loads(data)
-        print(posts)
 
         self.render("Imageboard.html", posts=posts)
     def post(self):
