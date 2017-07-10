@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -15,6 +19,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
     <script>tinymce.init({
@@ -39,6 +44,17 @@
             '//www.tinymce.com/css/codepen.min.css'
         ]
     });</script>
+
+    <script>
+        function addLike(id) {
+            $.get('/like?id=' + id, function (data) {
+                console.log(data);
+                console.log('#' + id + 'likes');
+                $('#' + id + 'likes').text(data);
+            });
+        }
+
+    </script>
     <style>
         .navbar {
             background: none;
@@ -136,9 +152,9 @@
                     {% raw post['text'] %}
                     <p align="left">
                         <strong class="pull-right">
-                            <a style="color: #FF3800;" href="/like?id={{post['_id']}}">
+                            <a onclick="addLike('{{post['_id']}}')" style="color: #FF3800;">
                                 <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                                {{post['likes']}}
+                                <span id="{{post['_id']}}likes">{{post['likes']}}</span>
                             </a>
                         </strong>
                     </p>

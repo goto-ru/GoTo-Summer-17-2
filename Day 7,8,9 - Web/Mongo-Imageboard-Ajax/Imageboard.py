@@ -30,7 +30,7 @@ class LikeHandler(tornado.web.RequestHandler):
         post = posts_collection.find_one({'_id': ObjectId(_id)})
         post['likes'] += 1
         posts_collection.update({'_id': ObjectId(_id)}, post)
-        self.redirect('/')
+        self.write(str(post['likes']))
 
 
 
