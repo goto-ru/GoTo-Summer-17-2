@@ -18,7 +18,7 @@ class MainHandler(tornado.web.RequestHandler):
         #добавление новой записи
         title = self.get_argument("title")
         text = self.get_argument("text")
-        post = {"title": title, "text": text, "likes": 0}
+        post = {"title": title, "text": text, "likes": 0, "comments": []}
 
         posts_collection.insert(post)
 
@@ -32,11 +32,26 @@ class LikeHandler(tornado.web.RequestHandler):
         posts_collection.update({'_id': ObjectId(_id)}, post)
         self.redirect('/')
 
+class CommentHandler(tornado.web.RequestHandler):
+    def post(self):
+        _id = self.get_argument('id')
+        post = posts_collection.find_one({'_id': ObjectId(_id)})
+
+        author = self.get_argument("author")
+        text = self.get_argument("text")
+        comment = {"author": author, "text": text}
+
+        post['comments'].append(comment)
+
+        posts_collection.update({'_id': ObjectId(_id)}, post)
+        self.redirect('/')
+
 
 
 routes = [
     (r'/', MainHandler),
     (r'/like', LikeHandler),
+    (r'/comment', CommentHandler),
 ]
 
 app = tornado.web.Application(routes, debug=True)
