@@ -1,6 +1,5 @@
 from selenium import webdriver
-from selenium.webdriver.common.proxy import Proxy
-from selenium.webdriver.common.proxy import ProxyType
+import lxml.html as html
 
 
 desired_capabilities = webdriver.DesiredCapabilities.PHANTOMJS.copy()
